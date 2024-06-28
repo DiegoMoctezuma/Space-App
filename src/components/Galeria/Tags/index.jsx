@@ -26,7 +26,7 @@ const BotonEstilizado = styled.button`
     background-color: #45576e;
     color: #FFFFFF;
     border-radius: 10px;
-    border: 2px solid transparent;
+    border: 2px solid ${props => (props.$seleccionado ? "#C98CF1" : "transparent")};
 
     cursor: pointer;
     transition: 0.4s ;
@@ -36,13 +36,17 @@ const BotonEstilizado = styled.button`
     }
 `;
 
-const Tags = () => {
+const Tags = ({CambioTag,seleccionado}) => {
+
     return (
         <TagsContainer>
             <p>Buscar por tags:</p>
             <BotonesContainer>
                 {tags.map((tag) => {
-                    return <BotonEstilizado key={tag.id}>{tag.titulo}</BotonEstilizado>
+                    return( 
+                    <BotonEstilizado onClick={() => CambioTag(tag.titulo)} $seleccionado={tag.titulo === seleccionado ? true : false} key={tag.id}>
+                        {tag.titulo}
+                    </BotonEstilizado>);
                 })}
             </BotonesContainer>
         </TagsContainer>

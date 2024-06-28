@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components"
 import fotos from "./fotos.json";
 import fotosPopulares from "./fotos-populares.json";
@@ -37,8 +37,10 @@ const ContenidoGaleria = styled.section`
   flex-grow: 1;
 `;
 
+// App
 const App = () => {
 
+// Estados de Fotos
   const [fotosGaleria, setFotosGaleria] = useState(fotos);
   const [fotosGaleriaPopulares, setFotosPopulares] = useState(fotosPopulares);
   const [fotoSeleccionada, setFotoSeleccionada] = useState(null);
@@ -60,6 +62,44 @@ const App = () => {
     }));
   };
 
+// Estado tags
+  const [seleccionado,setSeleccionado] = useState('Todas');
+  
+  useEffect(() => {
+    let tagId = 0;
+    switch(seleccionado){
+      case 'Todas':
+        tagId = 0;
+        break;
+      case 'Estrellas':
+        tagId = 1;
+        break;
+      case 'Galaxias':
+        tagId = 2;
+        break;
+      case 'Lunas':
+        tagId = 3;
+        break;
+      case 'Nebulosas':
+        tagId = 4;
+        break;
+      default:
+        tagId = 0;
+        break;
+    }
+
+    if(tagId === 0){
+      setFotosGaleria(fotos);
+      return;
+    }else {
+      setFotosGaleria(fotos.filter(foto => foto.tagId === tagId));
+    }
+  },[seleccionado])
+
+  const CambioTag = (titulo) => {
+      setSeleccionado(titulo);
+  };
+
   return (
     <>
       <FondoGradiente>
@@ -79,6 +119,8 @@ const App = () => {
                 fotosGaleria={fotosGaleria}
                 fotosGaleriaPopulares={fotosGaleriaPopulares}
                 like={Like}
+                CambioTag={CambioTag}
+                seleccionado={seleccionado}
               />
 
             </ContenidoGaleria>

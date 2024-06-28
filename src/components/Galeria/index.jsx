@@ -21,10 +21,10 @@ const FotosContainer = styled.div`
 `;
 
 
-const Galeria = ({fotosGaleria = [], seleccionarFoto,fotosGaleriaPopulares=[],like}) => {
+const Galeria = ({fotosGaleria = [], seleccionarFoto,fotosGaleriaPopulares=[],like, CambioTag,seleccionado}) => {
     return(
         <>
-            <Tags/>
+            <Tags CambioTag={CambioTag} seleccionado={seleccionado}/>
             <GaleriaContainer>
                 <SeccionFluida>
                     <Titulo>Navegue por la galeria</Titulo>
