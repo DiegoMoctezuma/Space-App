@@ -64,7 +64,7 @@ const App = () => {
 
 // Estado tags
   const [seleccionado,setSeleccionado] = useState('Todas');
-  
+
   useEffect(() => {
     let tagId = 0;
     switch(seleccionado){
@@ -100,6 +100,12 @@ const App = () => {
       setSeleccionado(titulo);
   };
 
+// Estado SideBar
+  const [seleccionadoSide, setSeleccionadoSide] = useState('Inicio');
+  const CambioSide = (titulo) => {
+    setSeleccionadoSide(titulo);
+  }
+
   return (
     <>
       <FondoGradiente>
@@ -110,7 +116,7 @@ const App = () => {
 
           <MainContainer>
 
-            <SideBar />
+            <SideBar CambioSide={CambioSide} seleccionadoSide={seleccionadoSide} />
             <ContenidoGaleria>
 
               <Banner imagen={banner}>La galería más completa del espacio</Banner>
