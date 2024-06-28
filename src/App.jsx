@@ -10,6 +10,7 @@ import Banner from "./components/Banner";
 import banner from "./assets/banner.png";
 import Galeria from "./components/Galeria";
 import ModalZoom from "./components/ModalZoom";
+import Footer from "./components/Footer";
 
 // Estilos
 const FondoGradiente = styled.div`
@@ -22,6 +23,7 @@ const AppContainer = styled.div`
   width: 1440px;
   max-width: 100%;
   margin: 0 auto;
+  padding-bottom: 100px;
 `;
 
 const MainContainer = styled.main`
@@ -85,6 +87,7 @@ const App = () => {
           
         </AppContainer>
         <ModalZoom imagen={fotoSeleccionada} close={setFotoSeleccionada} like={Like} />
+        <Footer />
       </FondoGradiente>
     </>
   )
