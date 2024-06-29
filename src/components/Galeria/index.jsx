@@ -21,7 +21,7 @@ const FotosContainer = styled.div`
 `;
 
 
-const Galeria = ({fotosGaleria = [], seleccionarFoto,fotosGaleriaPopulares=[],like, CambioTag,seleccionado}) => {
+const Galeria = ({fotosGaleria = [], seleccionarFoto,fotosGaleriaPopulares=[],like, CambioTag,seleccionado,busqueda}) => {
     return(
         <>
             <Tags CambioTag={CambioTag} seleccionado={seleccionado}/>
@@ -29,7 +29,11 @@ const Galeria = ({fotosGaleria = [], seleccionarFoto,fotosGaleriaPopulares=[],li
                 <SeccionFluida>
                     <Titulo>Navegue por la galeria</Titulo>
                     <FotosContainer>
-                        {fotosGaleria.map(foto => 
+                        {fotosGaleria.filter(foto => {
+                            return busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+                            .includes(busqueda.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")); 
+                        })
+                            .map(foto => 
                             <Card 
                                 key={foto.id} 
                                 foto={foto}

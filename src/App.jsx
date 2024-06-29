@@ -64,6 +64,7 @@ const App = () => {
 
 // Estado tags
   const [seleccionado,setSeleccionado] = useState('Todas');
+  const [busqueda, setBusqueda] = useState('');
 
   useEffect(() => {
     let tagId = 0;
@@ -112,7 +113,7 @@ const App = () => {
         <GlobalStyle />
 
         <AppContainer>
-        <Header />
+        <Header Busqueda={setBusqueda}/>
 
           <MainContainer>
 
@@ -127,6 +128,7 @@ const App = () => {
                 like={Like}
                 CambioTag={CambioTag}
                 seleccionado={seleccionado}
+                busqueda={busqueda}
               />
 
             </ContenidoGaleria>
