@@ -32,12 +32,12 @@ const Boton = styled.button`
 
 const Populares = () => {
 
-    const {fotosGaleriaPopulares} = useContext(GlobalContext);
+    const { state } = useContext(GlobalContext);
 
     return (
         <FotosContainer>
             <Titulo $align="center">Populares</Titulo>
-            {fotosGaleriaPopulares.map(foto =>{
+            {state.fotosPopulares.map(foto =>{
                 return <FotoPopular key={foto.id} src={foto.path} alt={foto.titulo}/>
             })}
             <Boton>Ver más</Boton>

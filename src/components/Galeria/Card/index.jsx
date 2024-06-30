@@ -59,7 +59,7 @@ const ImagenesInfo = styled.div`
 
 const Card = ({foto,expandida=false}) => {
 
-    const {Like,setFotoSeleccionada} = useContext(GlobalContext);
+    const { dispach } = useContext(GlobalContext);
 
     const iconoFav = foto.like ? "iconos/favorito-activo.png" : "iconos/favorito.png";
 
@@ -72,8 +72,8 @@ const Card = ({foto,expandida=false}) => {
                     <h4>{foto.fuente}</h4>
                 </TitulosInfo>
                 <ImagenesInfo>
-                    <img onClick={() => Like(foto)} src={iconoFav}  alt="Icono favorito"/>
-                    {!expandida && <img onClick={() => setFotoSeleccionada(foto)} src="iconos/expandir.png" alt="Icono zoom"/>}
+                    <img onClick={() => dispach({type: 'Like',payload: foto})} src={iconoFav}  alt="Icono favorito"/>
+                    {!expandida && <img onClick={() => dispach({type: 'SET_FOTO_SELECCIONADA',payload: foto})} src="iconos/expandir.png" alt="Icono zoom"/>}
                 </ImagenesInfo>
             </figcaption>
         </Figure>

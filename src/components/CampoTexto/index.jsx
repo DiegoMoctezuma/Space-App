@@ -39,7 +39,7 @@ const IconoLupa = styled.img`
 
 const CampoTexto = () => {
 
-    const { setBusqueda } = useContext(GlobalContext);
+    const { dispach } = useContext(GlobalContext);
     const inputBusqueda = useRef(null);
 
     return (
@@ -50,7 +50,7 @@ const CampoTexto = () => {
                 ref={inputBusqueda}
             />
             <IconoLupa 
-                onClick={() => setBusqueda(inputBusqueda.current.value)}
+                onClick={() => dispach({type: 'SET_BUSQUEDA', payload:inputBusqueda.current.value})}
                 src="iconos/search.png" 
                 alt="ícono de lupa" 
             />

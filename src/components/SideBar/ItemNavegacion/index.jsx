@@ -18,10 +18,10 @@ const ItemEstilizado = styled.li`
 
 const ItemNavegacion = ({children, iconoActivo, iconoInactivo, activo = false}) => {
 
-    const {setSeleccionadoSide} = useContext(GlobalContext);
+    const { dispach } = useContext(GlobalContext);
 
     return (
-        <ItemEstilizado onClick={() => setSeleccionadoSide(children)} $activo={activo}>
+        <ItemEstilizado onClick={() => dispach({type: 'SET_SELECCIONADO_SIDE', payload: children})} $activo={activo}>
             <img src={activo ? iconoActivo : iconoInactivo} alt="" />
             {children}
         </ItemEstilizado>

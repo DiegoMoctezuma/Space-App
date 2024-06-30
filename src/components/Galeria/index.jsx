@@ -27,19 +27,19 @@ const FotosContainer = styled.div`
 
 const Galeria = () => {
 
-    const {fotosGaleria,busqueda} = useContext(GlobalContext);
+    const { state } = useContext(GlobalContext);
 
     return(
-        fotosGaleria.length === 0 ? <Cargando/> :
+        state.fotosGaleria.length === 0 ? <Cargando/> :
             <>
                 <Tags/>
                 <GaleriaContainer>
                     <SeccionFluida>
                         <Titulo>Navegue por la galeria</Titulo>
                         <FotosContainer>
-                            {fotosGaleria.filter(foto => {
-                                return busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
-                                .includes(busqueda.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")); 
+                            {state.fotosGaleria.filter(foto => {
+                                return state.busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+                                .includes(state.busqueda.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")); 
                             })
                                 .map(foto => 
                                 <Card 
