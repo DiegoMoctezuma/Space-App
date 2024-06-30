@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
 import { styled } from "styled-components";
 
 const ContainerEstilizado = styled.div`
@@ -36,8 +37,9 @@ const IconoLupa = styled.img`
     }
 `;
 
-const CampoTexto = ({Busqueda}) => {
+const CampoTexto = () => {
 
+    const { setBusqueda } = useContext(GlobalContext);
     const inputBusqueda = useRef(null);
 
     return (
@@ -48,7 +50,7 @@ const CampoTexto = ({Busqueda}) => {
                 ref={inputBusqueda}
             />
             <IconoLupa 
-                onClick={() => Busqueda(inputBusqueda.current.value)}
+                onClick={() => setBusqueda(inputBusqueda.current.value)}
                 src="iconos/search.png" 
                 alt="ícono de lupa" 
             />

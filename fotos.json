@@ -5,70 +5,107 @@
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-1.png",
       "id": "1",
-      "tagId": 2
+      "tagId": 2,
+      "like": false
     },
     {
       "titulo": "Vía Láctea",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-2.png",
       "id": "2",
-      "tagId": 2
+      "tagId": 2,
+      "like": false
     },
     {
       "titulo": "Luna: cuarto menguante",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-3.png",
       "id": "3",
-      "tagId": 3
+      "tagId": 3,
+      "like": false
     },
     {
       "titulo": "Galaxia de Andrómeda",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-4.png",
       "id": "4",
-      "tagId": 2
+      "tagId": 2,
+      "like": false
     },
     {
       "titulo": "Estrella Pistola",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-5.png",
       "id": "5",
-      "tagId": 1
+      "tagId": 1,
+      "like": false
     },
     {
       "titulo": "Ilustración",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-6.png",
       "id": "6",
-      "tagId": 4
+      "tagId": 4,
+      "like": false
     },
     {
       "titulo": "Galaxia de Andrómeda",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-7.png",
       "id": "7",
-      "tagId": 2
+      "tagId": 2,
+      "like": false
     },
     {
       "titulo": "Ilustración",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-8.png",
       "id": "8",
-      "tagId": 4
+      "tagId": 4,
+      "like": false
     },
     {
       "titulo": "Cielo estrellado",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-9.png",
       "id": "9",
-      "tagId": 1
+      "tagId": 1,
+      "like": false
     },
     {
       "titulo": "Ilustración",
       "fuente": "Alura Space",
       "path": "/imagenes/galeria/foto-10.png",
       "id": "10",
-      "tagId": 1
+      "tagId": 1,
+      "like": false
+    }
+  ],
+  "fotosPopulares": [
+    {
+      "path": "/imagenes/populares/foto-1.png",
+      "alt": "galaxia",
+      "id": 1
+    },
+    {
+      "path": "/imagenes/populares/foto-2.png",
+      "alt": "luna",
+      "id": 2
+    },
+    {
+      "path": "/imagenes/populares/foto-3.png",
+      "alt": "tierra",
+      "id": 3
+    },
+    {
+      "path": "/imagenes/populares/foto-4.png",
+      "alt": "nube",
+      "id": 4
+    },
+    {
+      "path": "/imagenes/populares/foto-5.png",
+      "alt": "meteorito",
+      "id": 5
     }
   ]
 }

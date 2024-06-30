@@ -1,4 +1,6 @@
-import styled from "styled-components";
+import { useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalContext";
+import styled from "styled-components"; 
 
 const Figure = styled.figure`
     width: ${props => (props.$expandida ? "90%" : "460px")};
@@ -55,7 +57,9 @@ const ImagenesInfo = styled.div`
     }
 `;
 
-const Card = ({foto,expandida=false,solicitarZoom,like}) => {
+const Card = ({foto,expandida=false}) => {
+
+    const {Like,setFotoSeleccionada} = useContext(GlobalContext);
 
     const iconoFav = foto.like ? "iconos/favorito-activo.png" : "iconos/favorito.png";
 
@@ -68,8 +72,8 @@ const Card = ({foto,expandida=false,solicitarZoom,like}) => {
                     <h4>{foto.fuente}</h4>
                 </TitulosInfo>
                 <ImagenesInfo>
-                    <img onClick={() => like(foto)} src={iconoFav}  alt="Icono favorito"/>
-                    {!expandida && <img onClick={() => solicitarZoom(foto)} src="iconos/expandir.png" alt="Icono zoom"/>}
+                    <img onClick={() => Like(foto)} src={iconoFav}  alt="Icono favorito"/>
+                    {!expandida && <img onClick={() => setFotoSeleccionada(foto)} src="iconos/expandir.png" alt="Icono zoom"/>}
                 </ImagenesInfo>
             </figcaption>
         </Figure>

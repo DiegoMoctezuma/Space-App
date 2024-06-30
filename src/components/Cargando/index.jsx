@@ -6,6 +6,7 @@ const CargandoContainer = styled.div`
 
     img{
         width: 10vw;
+        height: 10vw;
     }
 `;
 

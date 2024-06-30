@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
+
 import styled from "styled-components";
 import Titulo from "../Titulo";
 import Populares from "./Populares";
 import Tags from "./Tags";
 import Card from "./Card";
+import Cargando from "../Cargando";
 
 const GaleriaContainer = styled.div`
     display: flex;
@@ -21,31 +25,33 @@ const FotosContainer = styled.div`
 `;
 
 
-const Galeria = ({fotosGaleria = [], seleccionarFoto,fotosGaleriaPopulares=[],like, CambioTag,seleccionado,busqueda}) => {
+const Galeria = () => {
+
+    const {fotosGaleria,busqueda} = useContext(GlobalContext);
+
     return(
-        <>
-            <Tags CambioTag={CambioTag} seleccionado={seleccionado}/>
-            <GaleriaContainer>
-                <SeccionFluida>
-                    <Titulo>Navegue por la galeria</Titulo>
-                    <FotosContainer>
-                        {fotosGaleria.filter(foto => {
-                            return busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
-                            .includes(busqueda.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")); 
-                        })
-                            .map(foto => 
-                            <Card 
-                                key={foto.id} 
-                                foto={foto}
-                                solicitarZoom={seleccionarFoto}
-                                like={like}
-                            />
-                        )}
-                    </FotosContainer>
-                </SeccionFluida>
-                <Populares fotosGaleriaPopulares={fotosGaleriaPopulares}/>
-            </GaleriaContainer>
-        </>
+        fotosGaleria.length === 0 ? <Cargando/> :
+            <>
+                <Tags/>
+                <GaleriaContainer>
+                    <SeccionFluida>
+                        <Titulo>Navegue por la galeria</Titulo>
+                        <FotosContainer>
+                            {fotosGaleria.filter(foto => {
+                                return busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+                                .includes(busqueda.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")); 
+                            })
+                                .map(foto => 
+                                <Card 
+                                    key={foto.id} 
+                                    foto={foto}
+                                />
+                            )}
+                        </FotosContainer>
+                    </SeccionFluida>
+                    <Populares/>
+                </GaleriaContainer>
+            </>
     )
 }
 

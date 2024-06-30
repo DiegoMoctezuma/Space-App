@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { GlobalContext } from "../../context/GlobalContext";
+
 import styled from "styled-components";
 import Card from "../Galeria/Card";
 
@@ -37,16 +40,19 @@ const DialogEstilizado = styled.dialog`
     }
 `;
 
-const ModalZoom = ({imagen,close,like}) => {
+const ModalZoom = () => {
+
+    const {fotoSeleccionada,setFotoSeleccionada} = useContext(GlobalContext);
+
     return (
         <>
-            {imagen && 
+            {fotoSeleccionada && 
                 <>
                     <Overlay/>
-                    <DialogEstilizado $mitadY={window.scrollY} open={!!imagen}>
-                        <Card expandida={true} foto={imagen} like={like} />
+                    <DialogEstilizado $mitadY={window.scrollY} open={!!fotoSeleccionada}>
+                        <Card expandida={true} foto={fotoSeleccionada}/>
                         <form method="dialog">
-                            <img formMethod="dialog" src="iconos/cerrar.png" onClick={() => close(null)}/>
+                            <img formMethod="dialog" src="iconos/cerrar.png" onClick={() => setFotoSeleccionada(null)}/>
                         </form>
                     </DialogEstilizado>
                 </>

@@ -1,4 +1,5 @@
-import { act } from "react";
+import { act, useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalContext";
 import styled from "styled-components";
 
 const ItemEstilizado = styled.li`
@@ -15,9 +16,12 @@ const ItemEstilizado = styled.li`
     transition: 0.4s;
 `;
 
-const ItemNavegacion = ({children, iconoActivo, iconoInactivo, activo = false, CambioSide}) => {
+const ItemNavegacion = ({children, iconoActivo, iconoInactivo, activo = false}) => {
+
+    const {setSeleccionadoSide} = useContext(GlobalContext);
+
     return (
-        <ItemEstilizado onClick={() => CambioSide(children)} $activo={activo}>
+        <ItemEstilizado onClick={() => setSeleccionadoSide(children)} $activo={activo}>
             <img src={activo ? iconoActivo : iconoInactivo} alt="" />
             {children}
         </ItemEstilizado>

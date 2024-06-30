@@ -12,12 +12,12 @@ const HeaderEstilizado = styled.header`
     }
 `;
 
-const Header = ({Busqueda}) => {
+const Header = () => {
     return (
         <>
             <HeaderEstilizado>
                 <img src="imagenes/logo.png" alt="Logo Space App"/>
-                <CampoTexto Busqueda={Busqueda} />
+                <CampoTexto/>
             </HeaderEstilizado>
         </>
     )

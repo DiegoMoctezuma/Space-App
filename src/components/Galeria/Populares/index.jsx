@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import Titulo from "../../Titulo";
+import { useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalContext";
 
 const FotosContainer = styled.section`
     display: flex;
@@ -28,7 +30,10 @@ const Boton = styled.button`
     }
 `;
 
-const Populares = ({fotosGaleriaPopulares=[]}) => {
+const Populares = () => {
+
+    const {fotosGaleriaPopulares} = useContext(GlobalContext);
+
     return (
         <FotosContainer>
             <Titulo $align="center">Populares</Titulo>

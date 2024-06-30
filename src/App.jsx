@@ -1,7 +1,3 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components"
-import fotosPopulares from "./fotos-populares.json";
-
 import GlobalStyle from "./components/GlobalStyles";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
@@ -10,7 +6,9 @@ import banner from "./assets/banner.png";
 import Galeria from "./components/Galeria";
 import ModalZoom from "./components/ModalZoom";
 import Footer from "./components/Footer";
-import Cargando from "./components/Cargando";
+import GlobalContextProvider from "./context/GlobalContext";
+
+import styled from "styled-components";
 
 // Estilos
 const FondoGradiente = styled.div`
@@ -40,86 +38,33 @@ const ContenidoGaleria = styled.section`
 // App
 const App = () => {
 
-
-// Estados de Fotos
-  const [fotosGaleria, setFotosGaleria] = useState([]);
-  const [fotosGaleriaPopulares, setFotosPopulares] = useState(fotosPopulares);
-  const [fotoSeleccionada, setFotoSeleccionada] = useState(null);
-
-  const Like = (foto) => {
-
-    if(foto.id === fotoSeleccionada?.id){
-      setFotoSeleccionada({
-        ...fotoSeleccionada,
-        like: !foto.like  
-      });
-    }
-
-    setFotosGaleria(fotosGaleria.map(fotoG => {
-      return {
-        ...fotoG,
-        like: (fotoG.id == foto.id) ? !fotoG.like : fotoG.like
-      }
-    }));
-  };
-
-// Estado tags
-  const [seleccionado,setSeleccionado] = useState('Todas');
-  const [busqueda, setBusqueda] = useState('');
-
-
-  const CambioTag = (titulo) => {
-      setSeleccionado(titulo);
-  };
-
-// Conexion API
-  useEffect(() => {
-    const getData = async () => {
-      const res = await fetch('http://localhost:3001/fotos');
-      const data = await res.json();
-      setFotosGaleria([...data]);
-    };
-    setTimeout(() => getData(),5000);
-  });
-
-// Estado SideBar
-  const [seleccionadoSide, setSeleccionadoSide] = useState('Inicio');
-  const CambioSide = (titulo) => {
-    setSeleccionadoSide(titulo);
-  }
-
   return (
     <>
       <FondoGradiente>
         <GlobalStyle />
+        
+        <GlobalContextProvider>
+          <AppContainer>
+          <Header/>
 
-        <AppContainer>
-        <Header Busqueda={setBusqueda}/>
+            <MainContainer>
 
-          <MainContainer>
+              <SideBar/>
+              <ContenidoGaleria>
 
-            <SideBar CambioSide={CambioSide} seleccionadoSide={seleccionadoSide} />
-            <ContenidoGaleria>
+                <Banner imagen={banner}>La galería más completa del espacio</Banner>
+                <Galeria/>
 
-              <Banner imagen={banner}>La galería más completa del espacio</Banner>
-              { fotosGaleria.length === 0 ? <Cargando /> :
-                <Galeria 
-                  seleccionarFoto={foto => setFotoSeleccionada(foto)} 
-                  fotosGaleria={fotosGaleria}
-                  fotosGaleriaPopulares={fotosGaleriaPopulares}
-                  like={Like}
-                  CambioTag={CambioTag}
-                  seleccionado={seleccionado}
-                  busqueda={busqueda}
-                />
-              }
+              </ContenidoGaleria>
 
-            </ContenidoGaleria>
+            </MainContainer>
 
-          </MainContainer>
-          
-        </AppContainer>
-        <ModalZoom imagen={fotoSeleccionada} close={setFotoSeleccionada} like={Like} />
+          </AppContainer>
+
+          <ModalZoom/>
+
+        </GlobalContextProvider>
+        
         <Footer />
       </FondoGradiente>
     </>
