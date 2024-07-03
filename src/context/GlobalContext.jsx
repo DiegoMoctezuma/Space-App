@@ -6,7 +6,7 @@ const initialState = {
     fotosGaleria: [],
     fotosPopulares: [],
     fotoSeleccionada: null,
-    seleccionado: 'Todas',
+    seleccionadoTag: 0,
     busqueda: '',
     seleccionadoSide: 'Inicio',
     modalAbierto: false
@@ -20,8 +20,8 @@ const reducer = (state,action) => {
             return {...state, fotosPopulares: action.payload};
         case 'SET_FOTO_SELECCIONADA':
             return {...state, fotoSeleccionada: action.payload, modalAbierto: action.payload != null ? true : false };
-        case 'SET_SELECCIONADO':
-            return {...state, seleccionado: action.payload};
+        case 'SET_SELECCIONADO_TAG':
+            return {...state, seleccionadoTag: action.payload};
         case 'SET_BUSQUEDA':
             return {...state, busqueda: action.payload};
         case 'SET_SELECCIONADO_SIDE':

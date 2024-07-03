@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import tags from './tags.json';
+import { useContext } from 'react';
+import { GlobalContext } from '../../../context/GlobalContext';
 
 const TagsContainer = styled.div`
     display: flex;
@@ -36,7 +38,9 @@ const BotonEstilizado = styled.button`
     }
 `;
 
-const Tags = ({CambioTag,seleccionado}) => {
+const Tags = () => {
+
+    const { state, dispach } = useContext(GlobalContext);
 
     return (
         <TagsContainer>
@@ -44,7 +48,7 @@ const Tags = ({CambioTag,seleccionado}) => {
             <BotonesContainer>
                 {tags.map((tag) => {
                     return( 
-                    <BotonEstilizado onClick={() => CambioTag(tag.titulo)} $seleccionado={tag.titulo === seleccionado ? true : false} key={tag.id}>
+                    <BotonEstilizado onClick={() => dispach({type:'SET_SELECCIONADO_TAG', payload: tag.id})} $seleccionado={tag.id === state.seleccionadoTag ? true : false} key={tag.id}>
                         {tag.titulo}
                     </BotonEstilizado>);
                 })}

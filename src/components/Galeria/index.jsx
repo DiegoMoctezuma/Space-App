@@ -38,8 +38,10 @@ const Galeria = () => {
                         <Titulo>Navegue por la galeria</Titulo>
                         <FotosContainer>
                             {state.fotosGaleria.filter(foto => {
-                                return state.busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
+                                const busqueda = state.busqueda == '' || foto.titulo.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")
                                 .includes(state.busqueda.toLocaleLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")); 
+                                const tag = state.seleccionadoTag == 0 || foto.tagId === state.seleccionadoTag;
+                                return busqueda && tag;
                             })
                                 .map(foto => 
                                 <Card 
