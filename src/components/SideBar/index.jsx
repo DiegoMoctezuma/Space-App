@@ -13,7 +13,7 @@ const Lista = styled.ul`
 
 const SideBar = () => {
 
-    const {seleccionadoSide} = useContext(GlobalContext);
+    const { state } = useContext(GlobalContext);
 
     return(
         <aside>
@@ -22,31 +22,31 @@ const SideBar = () => {
                     <ItemNavegacion 
                         iconoActivo="iconos/home-activo.png" 
                         iconoInactivo="iconos/home-inactivo.png" 
-                        activo={seleccionadoSide === "Inicio" ? true : false}>
+                        activo={state.seleccionadoSide === "Inicio" ? true : false}>
                         Inicio
                     </ItemNavegacion>
                     <ItemNavegacion 
                         iconoActivo="iconos/mas-vistas-activo.png" 
                         iconoInactivo="iconos/mas-vistas-inactivo.png"
-                        activo={seleccionadoSide === "Más Vistas" ? true : false}>
+                        activo={state.seleccionadoSide === "Más Vistas" ? true : false}>
                         Más Vistas
                     </ItemNavegacion>
                     <ItemNavegacion  
                         iconoActivo="iconos/me-gusta-activo.png" 
                         iconoInactivo="iconos/me-gusta-inactivo.png" 
-                        activo={seleccionadoSide === "Más Me Gusta" ? true : false}>
+                        activo={state.seleccionadoSide === "Más Me Gusta" ? true : false}>
                         Más Me Gusta
                     </ItemNavegacion>
                     <ItemNavegacion  
                         iconoActivo="iconos/nuevas-activo.png" 
                         iconoInactivo="iconos/nuevas-inactivo.png" 
-                        activo={seleccionadoSide === "Nuevas" ? true : false}>
+                        activo={state.seleccionadoSide === "Nuevas" ? true : false}>
                         Nuevas
                     </ItemNavegacion>
                     <ItemNavegacion 
                         iconoActivo="iconos/sorprendeme-activo.png" 
                         iconoInactivo="iconos/sorprendeme-inactivo.png" 
-                        activo={seleccionadoSide === "Sorpréndame" ? true : false}>
+                        activo={state.seleccionadoSide === "Sorpréndame" ? true : false}>
                         Sorpréndame
                     </ItemNavegacion>
                 </Lista>
