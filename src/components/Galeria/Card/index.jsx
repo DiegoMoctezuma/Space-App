@@ -72,7 +72,7 @@ const Card = ({foto,expandida=false}) => {
                     <h4>{foto.fuente}</h4>
                 </TitulosInfo>
                 <ImagenesInfo>
-                    <img onClick={() => dispach({type: 'Like',payload: foto})} src={iconoFav}  alt="Icono favorito"/>
+                    <img onClick={() => dispach({type: 'Like', payload: foto})} src={iconoFav}  alt="Icono favorito"/>
                     {!expandida && <img onClick={() => dispach({type: 'SET_FOTO_SELECCIONADA',payload: foto})} src="iconos/expandir.png" alt="Icono zoom"/>}
                 </ImagenesInfo>
             </figcaption>
