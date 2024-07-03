@@ -8,7 +8,8 @@ const initialState = {
     fotoSeleccionada: null,
     seleccionado: 'Todas',
     busqueda: '',
-    seleccionadoSide: 'Inicio'
+    seleccionadoSide: 'Inicio',
+    modalAbierto: false
 };
 
 const reducer = (state,action) => {
@@ -18,7 +19,7 @@ const reducer = (state,action) => {
         case 'SET_FOTOS_POPULARES':
             return {...state, fotosPopulares: action.payload};
         case 'SET_FOTO_SELECCIONADA':
-            return {...state, fotoSeleccionada: action.payload};
+            return {...state, fotoSeleccionada: action.payload, modalAbierto: action.payload != null ? true : false };
         case 'SET_SELECCIONADO':
             return {...state, seleccionado: action.payload};
         case 'SET_BUSQUEDA':

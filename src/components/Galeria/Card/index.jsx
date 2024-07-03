@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { GlobalContext } from "../../../context/GlobalContext";
 import styled from "styled-components"; 
+import useFotoModal from "../../../hooks/useFotoModal";
 
 const Figure = styled.figure`
     width: ${props => (props.$expandida ? "90%" : "460px")};
@@ -60,6 +61,7 @@ const ImagenesInfo = styled.div`
 const Card = ({foto,expandida=false}) => {
 
     const { dispach } = useContext(GlobalContext);
+    const { openModal } = useFotoModal();
 
     const iconoFav = foto.like ? "iconos/favorito-activo.png" : "iconos/favorito.png";
 
@@ -73,7 +75,7 @@ const Card = ({foto,expandida=false}) => {
                 </TitulosInfo>
                 <ImagenesInfo>
                     <img onClick={() => dispach({type: 'Like', payload: foto})} src={iconoFav}  alt="Icono favorito"/>
-                    {!expandida && <img onClick={() => dispach({type: 'SET_FOTO_SELECCIONADA',payload: foto})} src="iconos/expandir.png" alt="Icono zoom"/>}
+                    {!expandida && <img onClick={() => openModal(foto)} src="iconos/expandir.png" alt="Icono zoom"/>}
                 </ImagenesInfo>
             </figcaption>
         </Figure>

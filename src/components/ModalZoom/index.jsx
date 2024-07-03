@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { GlobalContext } from "../../context/GlobalContext";
+import useFotoModal from "../../hooks/useFotoModal";
 
 import styled from "styled-components";
 import Card from "../Galeria/Card";
@@ -42,17 +41,17 @@ const DialogEstilizado = styled.dialog`
 
 const ModalZoom = () => {
 
-    const { state, dispach } = useContext(GlobalContext);
+    const { isOpenModal, selectedFoto, closeModal } = useFotoModal();
 
     return (
         <>
-            {state.fotoSeleccionada && 
+            {isOpenModal && 
                 <>
                     <Overlay/>
-                    <DialogEstilizado $mitadY={window.scrollY} open={!!state.fotoSeleccionada}>
-                        <Card expandida={true} foto={state.fotoSeleccionada}/>
+                    <DialogEstilizado $mitadY={window.scrollY} open={!!selectedFoto}>
+                        <Card expandida={true} foto={selectedFoto}/>
                         <form method="dialog">
-                            <img formMethod="dialog" src="iconos/cerrar.png" onClick={() => dispach({type:'SET_FOTO_SELECCIONADA' ,payload:null})}/>
+                            <img formMethod="dialog" src="iconos/cerrar.png" onClick={() => closeModal()}/>
                         </form>
                     </DialogEstilizado>
                 </>
