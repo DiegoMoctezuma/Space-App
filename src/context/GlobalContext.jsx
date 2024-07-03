@@ -5,6 +5,7 @@ export const GlobalContext = createContext();
 const initialState = {
     fotosGaleria: [],
     fotosPopulares: [],
+    tags: [],
     fotoSeleccionada: null,
     seleccionadoTag: 0,
     busqueda: '',
@@ -18,6 +19,8 @@ const reducer = (state,action) => {
             return {...state, fotosGaleria: action.payload};
         case 'SET_FOTOS_POPULARES':
             return {...state, fotosPopulares: action.payload};
+        case 'SET_TAGS':
+            return {...state, tags: action.payload};
         case 'SET_FOTO_SELECCIONADA':
             return {...state, fotoSeleccionada: action.payload, modalAbierto: action.payload != null ? true : false };
         case 'SET_SELECCIONADO_TAG':
@@ -56,16 +59,34 @@ const GlobalContextProvider = ({children}) => {
     // Conexion API
     useEffect(() => {
         const getData = async () => {
-            // Fotos Galeria
-            const res = await fetch('http://localhost:3001/fotos');
-            const data = await res.json();
-            dispach({type: 'SET_FOTOS_GALERIA', payload: data});
+            try {
+                // Fetch
+                const [resFotos, resPopulares, resTags] = await Promise.all([
+                    fetch('http://localhost:3001/fotos'),
+                    fetch('http://localhost:3001/fotosPopulares'),
+                    fetch('http://localhost:3001/tags')
+                ]);
 
-            // Fotos Populares
-            const resPopulares = await fetch('http://localhost:3001/fotosPopulares');
-            const dataPopulares = await resPopulares.json();
-            dispach({type: 'SET_FOTOS_POPULARES', payload: dataPopulares});
+                // Validar respuesta
+                if (!resFotos.ok || !resPopulares.ok || !resTags.ok) {
+                    throw new Error('Fallo en la conexión');
+                }
+
+                // Data
+                const data = await resFotos.json();
+                const dataPopulares = await resPopulares.json();
+                const dataTags = await resTags.json();
+
+                // Actualizar el estado
+                dispach({type: 'SET_FOTOS_GALERIA', payload: data});
+                dispach({type: 'SET_FOTOS_POPULARES', payload: dataPopulares});
+                dispach({type: 'SET_TAGS', payload: dataTags});
+                
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
         };
+
         setTimeout(() => getData(),3000);
     },[]);
 

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import tags from './tags.json';
 import { useContext } from 'react';
 import { GlobalContext } from '../../../context/GlobalContext';
 
@@ -46,7 +45,7 @@ const Tags = () => {
         <TagsContainer>
             <p>Buscar por tags:</p>
             <BotonesContainer>
-                {tags.map((tag) => {
+                {state.tags.map((tag) => {
                     return( 
                     <BotonEstilizado onClick={() => dispach({type:'SET_SELECCIONADO_TAG', payload: tag.id})} $seleccionado={tag.id === state.seleccionadoTag ? true : false} key={tag.id}>
                         {tag.titulo}
